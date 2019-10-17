@@ -53,6 +53,7 @@ router
     let {tag_id} = req.params;
     routerService.getListingsByTagId(req.app.get('db'),tag_id)
       .then(response => {
+        console.log(response);
         return res.json(response);
       });
   })

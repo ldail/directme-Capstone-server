@@ -20,7 +20,7 @@ const routerService = {
   },
 
 
-  
+
   getListings(db) {
     return db('listings')
       .join('tag_listings','tag_listings.listing_id','listings.id')
@@ -30,13 +30,13 @@ const routerService = {
     return db('listings')
       .join('tag_listings', 'tag_listings.listing_id','listings.id')
       .select('*')
-      .where('tag_listings.tag_id' === tag_id)
+      .where('tag_listings.tag_id',tag_id);
   },
   getListingsByListingId(db,listing_id) {
     return db('listings')
       .join('tag_listings', 'tag_listings.listing_id', 'listings.id')
       .select('*')
-      .where('listings.id'===listing_id)
+      .where('listings.id',listing_id);
   },
 
 
