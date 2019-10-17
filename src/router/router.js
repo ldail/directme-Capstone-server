@@ -30,6 +30,39 @@ router
       .then(response => {
         return res.json(response);
       });
+  })
+  .get('/getHubLinks',(req,res,next) => {
+    routerService.getHubLinks(req.app.get('db'))
+      .then(response => {
+        return res.json(response);
+      });
+  })
+  .get('/getHubTags',(req,res,next) => {
+    routerService.getHubTags(req.app.get('db'))
+      .then(response => {
+        return res.json(response);
+      });
+  })
+  .get('/listings',(req,res,next) => {
+    routerService.getListings(req.app.get('db'))
+      .then(response => {
+        return res.json(response);
+      });
+  })
+  .get('/listings/tag/:tag_id',(req,res,next) => {
+    let {tag_id} = req.params;
+    routerService.getListingsByTagId(req.app.get('db'),tag_id)
+      .then(response => {
+        return res.json(response);
+      });
+  })
+  .get('/listings/listing/:listing_id',(req,res,next) => {
+    let {listing_id} = req.params;
+    routerService.getListingsByListingId(req.app.get('db'),listing_id)
+      .then(response => {
+        return res.json(response);
+      });
   });
+
 
 module.exports = router;

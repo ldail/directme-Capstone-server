@@ -1,16 +1,5 @@
-BEGIN;
-
-INSERT INTO tags (name,id) 
-VALUES
-(null,1),
-('Programming', 2), 
-('Javascript', 3), 
-('React', 4), 
-('Tutorials', 5), 
-('Games', 6), 
-('Board', 7), 
-('Online', 8),
-('Art', 9);
+TRUNCATE TABLE IF EXISTS listings;
+TRUNCATE TABLE IF EXISTS tag_listings;
 
 INSERT INTO listings (name, url)
 VALUES
@@ -33,17 +22,3 @@ VALUES
 (6,5),(6,6),(6,7),
 (7,6),(7,7),
 (8,8);
-
-INSERT INTO hub_links (hub_id, sub_hub)
-VALUES
-(1,2),(1,5),(1,8),
-(2,3),
-(3,4),
-(5,6),(5,7),
-(8,9);
-
-INSERT INTO hub_tags(hub_id,tag_id)
-VALUES
-(1,1),(2, 2),(3, 3),(4, 4),(5, 6),(6, 8),(7, 7),(8, 8),(9, 9);
-
-COMMIT;
