@@ -51,6 +51,7 @@ router
   })
   .get('/listings/tag/:tag_id',(req,res,next) => {
     let {tag_id} = req.params;
+    console.log(tag_id);
     routerService.getListingsByTagId(req.app.get('db'),tag_id)
       .then(response => {
         console.log(response);
@@ -63,6 +64,10 @@ router
       .then(response => {
         return res.json(response);
       });
+  })
+  .get('/listings/tags/:tag_ids',(req,res,next) => {
+    let {tag_ids} = req.params;
+    res.end();
   });
 
 

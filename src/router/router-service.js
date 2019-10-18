@@ -38,8 +38,7 @@ const routerService = {
       .select('*')
       .where('listings.id',listing_id);
   },
-
-
+  
   getTagByName(db, name) {
     return db('tags').select('*').where({name});
   },
