@@ -44,6 +44,21 @@ const routerService = {
   },
   getTagById(db, id) {
     return db('tags').select('*').where({id});
+  },
+
+  // getTagCountsByPopularity(db) {
+  //   return db('tag_listings')
+  //     .join('tags', 'tags.id','tag_listings.tag_id')
+  //     .select('*');
+  // }
+
+  
+    getTagCountsByPopularity(db) {
+    return db('tag_listings')
+      .join('tags', 'tags.id','tag_listings.tag_id')
+      .select(db.raw('tag_listings.tag_id as id, tags.name, count(tag_id) as count'))
+      .groupBy('tag_listings.tag_id','tags.name')
+      .orderByRaw('count(tag_id) desc');
   }
 };
 

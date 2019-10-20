@@ -68,6 +68,13 @@ router
   .get('/listings/tags/:tag_ids',(req,res,next) => {
     let {tag_ids} = req.params;
     res.end();
+  })
+  .get('/tagCount',(req,res,next) => {
+    routerService.getTagCountsByPopularity(req.app.get('db'))
+      .then(response => {
+        console.log(response);
+        return res.json(response);
+      });
   });
 
 
