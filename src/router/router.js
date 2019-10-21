@@ -75,6 +75,28 @@ router
         console.log(response);
         return res.json(response);
       });
+  })
+
+
+  .post('/tags/:name',(req,res,next) => {
+    let {name} = req.params;
+    console.log('name');
+    console.log(name);
+    routerService.addTag(req.app.get('db'),name)
+      .then(response => {
+        return res.json(response);
+      });
+  })
+
+  .post('/tag-listings',bodyParser,(req,res,next) => {
+    let newTagListing = req.body;
+    console.log(newTagListing);
+    routerService.addTagListing(req.app.get('db'),newTagListing)
+      .then(response => {
+        console.log('response is');
+        console.log(response);
+        return res.json(response);
+      });
   });
 
 

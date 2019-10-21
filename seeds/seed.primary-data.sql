@@ -1,16 +1,16 @@
 BEGIN;
 
-INSERT INTO tags (name,id) 
+INSERT INTO tags (name)
 VALUES
-(null,1),
-('Programming', 2), 
-('Javascript', 3), 
-('React', 4), 
-('Tutorials', 5), 
-('Games', 6), 
-('Board', 7), 
-('Online', 8),
-('Art', 9);
+(null),
+('Programming'), 
+('Javascript'), 
+('React'), 
+('Tutorials'), 
+('Games'), 
+('Board'), 
+('Online'),
+('Art');
 
 INSERT INTO listings (name, url, description)
 VALUES
@@ -23,6 +23,8 @@ VALUES
 ('Pogo Online Gaming', 'http://pogo.com', null), 
 ('Youtube', 'https://youtube.com', 'Prepare to waste years of your life here.'); 
 
+COMMIT; 
+BEGIN;
 INSERT INTO tag_listings (listing_id, tag_id)
 VALUES
 (1,2),(1,3),(1,4),(1,5),(1,8),
@@ -41,6 +43,9 @@ VALUES
 (3,4),
 (5,6),(5,7),
 (8,9);
+
+COMMIT;
+BEGIN;
 
 INSERT INTO hub_tags(hub_id,tag_id)
 VALUES
