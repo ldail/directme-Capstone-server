@@ -69,6 +69,11 @@ const routerService = {
   addTagListing(db,listing) {
     return db('tag_listings').insert(listing).returning('*')
       .then(rows => rows[0]);
+  },
+
+  addListing(db, listing) {
+    return db('listings').insert(listing).returning('*')
+      .then(rows => rows[0]);
   }
 };
 

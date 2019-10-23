@@ -84,6 +84,8 @@ router
     console.log(name);
     routerService.addTag(req.app.get('db'),name)
       .then(response => {
+        console.log('tag');
+        console.log(response);
         return res.json(response);
       });
   })
@@ -95,6 +97,15 @@ router
       .then(response => {
         console.log('response is');
         console.log(response);
+        return res.json(response);
+      });
+  })
+
+  .post('/listings',bodyParser,(req,res,next) => {
+    let listing = req.body;
+    console.log(listing);
+    routerService.addListing(req.app.get('db'),listing)
+      .then(response => {
         return res.json(response);
       });
   });
