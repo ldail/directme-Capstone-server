@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = express.json();
 const routerService = require('./router-service');
-const xss = require('xss');
+// const xss = require('xss');
 
 router
 
@@ -41,8 +41,8 @@ router
 
   .post('/tags/:name',(req,res,next) => {
     let {name} = req.params;
-    let serialized = xss(name);
-    routerService.addTag(req.app.get('db'),serialized)
+    // let serialized = xss(name);
+    routerService.addTag(req.app.get('db'),name)
       .then(response => {
         return res.json(response);
       });
