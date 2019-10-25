@@ -65,13 +65,13 @@ router
 
   .post('/listings',bodyParser,(req,res,next) => {
     let listing = req.body;
-    let serialized = {
-      name: xss(listing.name),
-      url: xss(listing.url),
-      description: xss(listing.description)
-    };
+    // let serialized = {
+    //   name: xss(listing.name),
+    //   url: xss(listing.url),
+    //   description: xss(listing.description)
+    // };
 
-    routerService.addListing(req.app.get('db'),serialized)
+    routerService.addListing(req.app.get('db'),listing)
       .then(response => {
         return res.json(response);
       })
