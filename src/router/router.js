@@ -20,7 +20,7 @@ router
       })
       .catch(next);
   })
-  .get('/getHubTags',(req,res,next) => {
+  .get('/hub_tags',(req,res,next) => {
     routerService.getHubTags(req.app.get('db'))
       .then(response => {
         return res.json(response);
