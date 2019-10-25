@@ -4,29 +4,9 @@ const bodyParser = express.json();
 const routerService = require('./router-service');
 
 router
-  .get('/allSubcategoryLists',(req,res,next) => {
-    routerService.getAllSubcategoryLists(req.app.get('db'))
-      .then(response => {
-        return res.json(response);
-      });
-  })
+
   .get('/allTags', (req,res,next) => {
     routerService.getAllTags(req.app.get('db'))
-      .then(response => {
-        return res.json(response);
-      });
-  })
-  .get('/getTagByName',(req,res,next) => {
-    let {name} = req.params;
-    routerService.getTagByName(req.app.get('db'),name)
-      .then(response => {
-        return res.json(response);
-      });
-  })
-  .get('/getTagById/:id',(req,res,next) => {
-    console.log('reached!');
-    let {id} = req.params;
-    routerService.getTagById(req.app.get('db'),id)
       .then(response => {
         return res.json(response);
       });
@@ -49,26 +29,7 @@ router
         return res.json(response);
       });
   })
-  .get('/listings/tag/:tag_id',(req,res,next) => {
-    let {tag_id} = req.params;
-    console.log(tag_id);
-    routerService.getListingsByTagId(req.app.get('db'),tag_id)
-      .then(response => {
-        console.log(response);
-        return res.json(response);
-      });
-  })
-  .get('/listings/listing/:listing_id',(req,res,next) => {
-    let {listing_id} = req.params;
-    routerService.getListingsByListingId(req.app.get('db'),listing_id)
-      .then(response => {
-        return res.json(response);
-      });
-  })
-  .get('/listings/tags/:tag_ids',(req,res,next) => {
-    let {tag_ids} = req.params;
-    res.end();
-  })
+
   .get('/tagCount',(req,res,next) => {
     routerService.getTagCountsByPopularity(req.app.get('db'))
       .then(response => {
@@ -80,30 +41,22 @@ router
 
   .post('/tags/:name',(req,res,next) => {
     let {name} = req.params;
-    console.log('name');
-    console.log(name);
     routerService.addTag(req.app.get('db'),name)
       .then(response => {
-        console.log('tag');
-        console.log(response);
         return res.json(response);
       });
   })
 
   .post('/tag-listings',bodyParser,(req,res,next) => {
     let newTagListing = req.body;
-    console.log(newTagListing);
     routerService.addTagListing(req.app.get('db'),newTagListing)
       .then(response => {
-        console.log('response is');
-        console.log(response);
         return res.json(response);
       });
   })
 
   .post('/listings',bodyParser,(req,res,next) => {
     let listing = req.body;
-    console.log(listing);
     routerService.addListing(req.app.get('db'),listing)
       .then(response => {
         return res.json(response);
