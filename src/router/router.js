@@ -6,14 +6,14 @@ const xss = require('xss');
 
 router
 
-  .get('/allTags', (req,res,next) => {
+  .get('/tags', (req,res,next) => {
     routerService.getAllTags(req.app.get('db'))
       .then(response => {
         return res.json(response);
       })
       .catch(next);
   })
-  .get('/getHubLinks',(req,res,next) => {
+  .get('/hub_links',(req,res,next) => {
     routerService.getHubLinks(req.app.get('db'))
       .then(response => {
         return res.json(response);
