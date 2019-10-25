@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = express.json();
 const routerService = require('./router-service');
+const xss = require('xss');
 
 router
 
@@ -9,42 +10,48 @@ router
     routerService.getAllTags(req.app.get('db'))
       .then(response => {
         return res.json(response);
-      });
+      })
+      .catch(next);
   })
   .get('/getHubLinks',(req,res,next) => {
     routerService.getHubLinks(req.app.get('db'))
       .then(response => {
         return res.json(response);
-      });
+      })
+      .catch(next);
   })
   .get('/getHubTags',(req,res,next) => {
     routerService.getHubTags(req.app.get('db'))
       .then(response => {
         return res.json(response);
-      });
+      })
+      .catch(next);
   })
   .get('/listings',(req,res,next) => {
     routerService.getListings(req.app.get('db'))
       .then(response => {
         return res.json(response);
-      });
+      })
+      .catch(next);
   })
 
   .get('/tagCount',(req,res,next) => {
     routerService.getTagCountsByPopularity(req.app.get('db'))
       .then(response => {
-        console.log(response);
         return res.json(response);
-      });
+      })
+      .catch(next);
   })
 
 
   .post('/tags/:name',(req,res,next) => {
     let {name} = req.params;
-    routerService.addTag(req.app.get('db'),name)
+    let serialized = xss(name);
+    routerService.addTag(req.app.get('db'),serialized)
       .then(response => {
         return res.json(response);
-      });
+      })
+      .catch(next);
   })
 
   .post('/tag-listings',bodyParser,(req,res,next) => {
@@ -52,15 +59,23 @@ router
     routerService.addTagListing(req.app.get('db'),newTagListing)
       .then(response => {
         return res.json(response);
-      });
+      })
+      .catch(next);
   })
 
   .post('/listings',bodyParser,(req,res,next) => {
     let listing = req.body;
-    routerService.addListing(req.app.get('db'),listing)
+    let serialized = {
+      name: xss(listing.name),
+      url: xss(listing.url),
+      description: xss(listing.description)
+    };
+
+    routerService.addListing(req.app.get('db'),serialized)
       .then(response => {
         return res.json(response);
-      });
+      })
+      .catch(next);
   });
 
 
