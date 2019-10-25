@@ -46,6 +46,9 @@ router
 
   .post('/tags/:name',(req,res,next) => {
     let {name} = req.params;
+    if (name == null) {
+      return res.status(400).json({message: `Missing name in request`});
+    }
     let serialized = xss(name);
     routerService.addTag(req.app.get('db'),serialized)
       .then(response => {
@@ -54,17 +57,25 @@ router
       .catch(next);
   })
 
-  .post('/tag-listings',bodyParser,(req,res,next) => {
+  .post('/tag_listings',bodyParser,(req,res,next) => {
     let newTagListing = req.body;
+
+    if (!newTagListing || !newTagListing.tag_id || !newTagListing.listing_id) {
+      return res.status(400).json({message: `The send request was wrong!`});
+    }
     routerService.addTagListing(req.app.get('db'),newTagListing)
-      .then(response => {
-        return res.json(response);
+      .then(() => {
+        return res.status(204).end();
       })
       .catch(next);
   })
 
   .post('/listings',bodyParser,(req,res,next) => {
     let listing = req.body;
+
+    if (!listing || !listing.name || !listing.url || !listing.description) {
+      return res.status(400).json({message: `The send request was wrong!`});
+    }
     let serialized = {
       name: xss(listing.name),
       url: xss(listing.url),
