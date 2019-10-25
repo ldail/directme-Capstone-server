@@ -10,37 +10,32 @@ router
     routerService.getAllTags(req.app.get('db'))
       .then(response => {
         return res.json(response);
-      })
-      .catch(next);
+      });
   })
   .get('/hub_links',(req,res,next) => {
     routerService.getHubLinks(req.app.get('db'))
       .then(response => {
         return res.json(response);
-      })
-      .catch(next);
+      });
   })
   .get('/hub_tags',(req,res,next) => {
     routerService.getHubTags(req.app.get('db'))
       .then(response => {
         return res.json(response);
-      })
-      .catch(next);
+      });
   })
   .get('/listings',(req,res,next) => {
     routerService.getListings(req.app.get('db'))
       .then(response => {
         return res.json(response);
-      })
-      .catch(next);
+      });
   })
 
   .get('/tagCount',(req,res,next) => {
     routerService.getTagCountsByPopularity(req.app.get('db'))
       .then(response => {
         return res.json(response);
-      })
-      .catch(next);
+      });
   })
 
 
@@ -50,8 +45,7 @@ router
     routerService.addTag(req.app.get('db'),serialized)
       .then(response => {
         return res.json(response);
-      })
-      .catch(next);
+      });
   })
 
   .post('/tag-listings',bodyParser,(req,res,next) => {
@@ -59,8 +53,7 @@ router
     routerService.addTagListing(req.app.get('db'),newTagListing)
       .then(response => {
         return res.json(response);
-      })
-      .catch(next);
+      });
   })
 
   .post('/listings',bodyParser,(req,res,next) => {
@@ -74,8 +67,7 @@ router
     routerService.addListing(req.app.get('db'),listing)
       .then(response => {
         return res.json(response);
-      })
-      .catch(next);
+      });
   });
 
 
