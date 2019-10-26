@@ -59,23 +59,19 @@ router
 
   .post('/tag_listings',bodyParser,(req,res,next) => {
     let newTagListing = req.body;
-    let listing = {listing_id: newTagListing.listing_id, tag_id: newTagListing.tagid};
-    console.log(newTagListing);
-    console.log(listing);
 
     if (!newTagListing || !newTagListing.tag_id || !newTagListing.listing_id) {
       return res.status(400).json({message: `The send request was wrong!`});
     }
-    routerService.addTagListing(req.app.get('db'),listing)
-      .then(response => {
-        return res.json(response);
+    routerService.addTagListing(req.app.get('db'),newTagListing)
+      .then(() => {
+        return res.status(204).end();
       })
       .catch(next);
   })
 
   .post('/listings',bodyParser,(req,res,next) => {
     let listing = req.body;
-
 
     if (!listing || !listing.name || !listing.url || !listing.description) {
       return res.status(400).json({message: `The send request was wrong!`});
