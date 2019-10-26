@@ -169,7 +169,7 @@ describe('Directme endpoints',() => {
           return supertest(app)
             .post('/api/tag_listings/')
             .send(sendData)
-            .expect(204);
+            .expect(200);
         });
       });
     });

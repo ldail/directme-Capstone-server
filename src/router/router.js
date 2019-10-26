@@ -58,14 +58,14 @@ router
   })
 
   .post('/tag_listings',bodyParser,(req,res,next) => {
-    let newTagListing = req.body;
+    let {newTagListing} = req.body;
 
     if (!newTagListing || !newTagListing.tag_id || !newTagListing.listing_id) {
       return res.status(400).json({message: `The send request was wrong!`});
     }
     routerService.addTagListing(req.app.get('db'),newTagListing)
-      .then(() => {
-        return res.status(204).end();
+      .then(response => {
+        return res.json(response);
       })
       .catch(next);
   })
