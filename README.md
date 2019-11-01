@@ -27,18 +27,6 @@ Future deployment will include:
 * Enzyme
 * Jest
 
-## Screenshots
-
-#### `MainHubs` View
-![Hubs View](https://github.com/ldail/directme-Capstone/blob/master/src/images/Directme_hubs_screenshot.png)
-
-#### `MainListings` View
-![Listings View](https://github.com/ldail/directme-Capstone/blob/master/src/images/Directme_listings_screenshot.png)
-
-#### `MainTags` View
-![Tags View](https://github.com/ldail/directme-Capstone/blob/master/src/images/Directme_tags_screenshot.png)
-
-
 ## Details
 
 Each Component is housed within its own folder. I took the best effort to separate out reusable functions as needed.
