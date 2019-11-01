@@ -1,7 +1,6 @@
 DROP TABLE IF EXISTS tags;
 DROP TABLE IF EXISTS listings;
 DROP TABLE IF EXISTS tag_listings;
-DROP TABLE IF EXISTS subcategory_list;
 DROP TABLE IF EXISTS hub_links;
 DROP TABLE IF EXISTS hub_tags;
 
